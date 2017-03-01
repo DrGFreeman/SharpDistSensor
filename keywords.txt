@@ -1,0 +1,3 @@
+SharpDistSensor	KEYWORD1
+
+getDist KEYWORD2
