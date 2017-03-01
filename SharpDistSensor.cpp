@@ -72,6 +72,6 @@ uint16_t SharpDistSensor::getDist()
   // Return filtered distance value
   return medFilt.in(dist);
 
-  // If no median filtered is desired, replace above line with the following:
+  // If no median filter is desired, replace above line with the following:
   // return dist;
 }
