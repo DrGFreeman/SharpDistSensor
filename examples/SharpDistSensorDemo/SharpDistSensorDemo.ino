@@ -1,5 +1,5 @@
 /*
-SharpDistSensor.cpp
+SharpDistSensorDemo.ino
 Source: https://github.com/DrGFreeman/SharpDistSensor
 
 MIT License
