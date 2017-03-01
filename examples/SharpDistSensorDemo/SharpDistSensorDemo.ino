@@ -1,5 +1,5 @@
 /*
-SharpDistSensorDemo.ino
+SharpDistSensor.cpp
 Source: https://github.com/DrGFreeman/SharpDistSensor
 
 MIT License
@@ -37,8 +37,9 @@ read the sensor and display the analog value and the corrseponding distance
 const byte pin = A0;
 
 // Minimum and maximum analog values for which to return a distance
-uint16_t minVal = 134;
-uint16_t maxVal = 1023;
+// Calibration range is from 30 to 875 (~1500-50 mm)
+uint16_t minVal = 30;
+uint16_t maxVal = 875;
 
 // Window size of the median filter
 byte mfSize = 5;

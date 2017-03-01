@@ -63,7 +63,8 @@ uint16_t SharpDistSensor::getDist()
   }
 
   // Calculate distance from polynomial curve
-  uint16_t dist = C4 * pow(sensVal, 4);
+  uint16_t dist = C5 * pow(sensVal, 5);
+  dist += C4 * pow(sensVal, 4);
   dist += C3 * pow(sensVal, 3);
   dist += C2 * pow(sensVal, 2);
   dist += C1 * sensVal + C0;
