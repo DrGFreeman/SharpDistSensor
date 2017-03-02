@@ -29,20 +29,23 @@ SOFTWARE.
 
 /* Constructor
   pin:    Arduino analog pin the sensor is connected to
-  valMin: The minimal analog value for which to return a distance
-  valMax: The maximal analog value for which to return a distance
   mfSize: Window size of the median filter
+  valMin: Minimal analog value for which to return a distance
+  valMax: Maximal analog value for which to return a distance
 */
-SharpDistSensor::SharpDistSensor(const byte pin, const uint16_t valMin,
-  const uint16_t valMax, const byte mfSize) : medFilt(mfSize, 1500)
+SharpDistSensor::SharpDistSensor(const byte pin, const byte size,
+  const uint16_t valMin, const uint16_t valMax) : medFilt(size, 1500)
 {
-  // The Arduino analog pin the sensor is connected to
+  // Arduino analog pin the sensor is connected to
   sensPin = pin;
 
-  // The minimal analog value for which to return a distance
+  // Window size of the median filter (0 = no filtering)
+  mfSize = size;
+
+  // Minimal analog value for which to return a distance
   sensValMin = valMin;
 
-  // The maximal analog value for which to return a distance
+  // Maximal analog value for which to return a distance
   sensValMax = valMax;
 }
 
@@ -69,9 +72,11 @@ uint16_t SharpDistSensor::getDist()
   dist += C2 * pow(sensVal, 2);
   dist += C1 * sensVal + C0;
 
-  // Return filtered distance value
-  return medFilt.in(dist);
+  if (mfSize > 1)
+  {
+    // Get filtered distance value
+    dist = medFilt.in(dist);
+  }
 
-  // If no median filter is desired, replace above line with the following:
-  // return dist;
+  return dist;
 }

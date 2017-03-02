@@ -1,5 +1,5 @@
 /*
-SharpDistSensor.cpp
+SharpDistSensorDemo.ino
 Source: https://github.com/DrGFreeman/SharpDistSensor
 
 MIT License
@@ -37,16 +37,19 @@ read the sensor and display the analog value and the corrseponding distance
 const byte pin = A0;
 
 // Minimum and maximum analog values for which to return a distance
-// Calibration range is from 30 to 875 (~1500-50 mm)
-uint16_t minVal = 30;
-uint16_t maxVal = 875;
+// Full calibration range is from 30 to 875 (~1500-50 mm)
+const uint16_t minVal = 134; // ~800 mm
+const uint16_t maxVal = 875; // ~50mm
 
-// Window size of the median filter
-byte mfSize = 5;
+// Window size of the median filter (odd number, 1 = no filtering)
+const byte mfSize = 5;
 
 
 // Create an object instance of the SharpDistSensor class
-SharpDistSensor sensor(pin, minVal, maxVal, mfSize);
+SharpDistSensor sensor(pin, mfSize, minVal, maxVal);
+
+// For default values (no filtering, full range), use line below
+//SharpDistSensor sensor(pin);
 
 void setup() {
   Serial.begin(9600);

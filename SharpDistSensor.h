@@ -28,7 +28,7 @@ SOFTWARE.
 /*
 SharpDistSensor; Sharp analog distance sensor library
 
-This is a library for the Arduino IDE that helps interface with Sharp analog
+This is a library for the Arduino IDE that helps interface with Sharp IR analog
 distance sensors.
 
 The analog value from the sensor is converted to distance using a fifth order
@@ -54,23 +54,27 @@ public:
 
   /** Constructor
     pin:    Arduino analog pin the sensor is connected to
-    valMin: The minimal analog value for which to return a distance
-    valMax: The maximal analog value for which to return a distance
-    mfSize: Window size of the median filter
+    mfSize: Window size of the median filter (1 = no filtering)
+    valMin: Minimal analog value for which to return a distance
+    valMax: Maximal analog value for which to return a distance
   **/
-  SharpDistSensor(byte pin, uint16_t valMin, uint16_t valMax, byte mfSize);
+  SharpDistSensor(const byte pin, const byte size = 1,
+    const uint16_t valMin = 30, const uint16_t valMax = 875);
 
   // Returns the measured distance
   uint16_t getDist();
 
 private:
-  // Analog pin to which the sensor is connected
+  // Arduino analog pin the sensor is connected to
   byte sensPin;
 
-  // The minimal analog value for which to return a distance
+  // Window size of the median filter (0 = no filtering)
+  byte mfSize;
+
+  // Minimal analog value for which to return a distance
   uint16_t sensValMin;
 
-  // The maximal analog value for which to return a distance
+  // Maximal analog value for which to return a distance
   uint16_t sensValMax;
 
   // Polynomial curve coefficients to convert analog signal to distance (in mm)
