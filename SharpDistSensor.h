@@ -32,13 +32,16 @@ This is a library for the Arduino IDE that helps interface with Sharp IR analog
 distance sensors.
 
 The analog value from the sensor is converted to distance using a fifth order
-polynomial fit curve. The default polynomial coefficients in this lilbrary are
-calibrated for the Sharp GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V over
-a range of 50-1500 mm (analog values 30-875). Distance units are millimeters
-(mm). For different accuracy, range, sensor model or units, different
-coefficients may be required. Use the setPolyFitCoeffs method to define custom
-coefficients. Use the setValMinMax method to define different analog values
-range.
+polynomial fit curve.
+
+The default polynomial coefficients in this lilbrary are calibrated for the
+Sharp GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V over a range of 50-1500
+mm (analog values 30-875). Distance units are millimeters (mm). For different
+accuracy, range, sensor model or units, different coefficients may be required.
+
+Use the setPolyFitCoeffs method to define custom coefficients.
+
+Use the setValMinMax method to define different analog values range.
 
 The distance output is filtered using median filtering. The following library
 is required: https://github.com/daPhoosa/MedianFilter.
@@ -56,11 +59,11 @@ public:
 
   /** Constructor
     pin:    Arduino analog pin the sensor is connected to
-    mfSize: Window size of the median filter (1 = no filtering)
+    size: Window size of the median filter (1 = no filtering)
   **/
   SharpDistSensor(const byte pin, const byte size = 1);
 
-  // Returns the measured distance
+  // Return the measured distance
   uint16_t getDist();
 
   /* Set the polynomial fit curve coefficients and range
@@ -79,7 +82,7 @@ private:
   // Arduino analog pin the sensor is connected to
   byte _pin;
 
-  // Window size of the median filter (0 = no filtering)
+  // Window size of the median filter (1 = no filtering)
   byte _mfSize;
 
   // Minimal analog value for which to return a distance
@@ -88,7 +91,7 @@ private:
   // Maximal analog value for which to return a distance
   uint16_t _valMax;
 
-  // Polynomial curve coefficients to convert analog signal to distance (in mm)
+  // Polynomial curve coefficients to convert analog signal to distance
   float _coeffs[6];
 
   // Median filter object instance

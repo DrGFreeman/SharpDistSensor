@@ -29,9 +29,7 @@ SOFTWARE.
 
 /* Constructor
   pin:    Arduino analog pin the sensor is connected to
-  mfSize: Window size of the median filter
-  valMin: Minimal analog value for which to return a distance
-  valMax: Maximal analog value for which to return a distance
+  size: Window size of the median filter
 */
 SharpDistSensor::SharpDistSensor(const byte pin, const byte size) :
   medFilt(size, 1500)
@@ -39,7 +37,7 @@ SharpDistSensor::SharpDistSensor(const byte pin, const byte size) :
   // Arduino analog pin the sensor is connected to
   _pin = pin;
 
-  // Window size of the median filter (0 = no filtering)
+  // Window size of the median filter (1 = no filtering)
   _mfSize = size;
 
   // Set default coefficients and range for Sharp GP2Y0A60SZLF 5V
