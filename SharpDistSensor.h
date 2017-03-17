@@ -32,11 +32,13 @@ This is a library for the Arduino IDE that helps interface with Sharp IR analog
 distance sensors.
 
 The analog value from the sensor is converted to distance using a fifth order
-polynomial fit curve. The polynomial coefficients in this file are calibrated
-for the Sharp GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V over a range of
-50-1500 mm (analog values 30-875). Distance units are millimeters (mm).
-For different accuracy, range, sensor model or units, different coefficients
-may be required.
+polynomial fit curve. The default polynomial coefficients in this lilbrary are
+calibrated for the Sharp GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V over
+a range of 50-1500 mm (analog values 30-875). Distance units are millimeters
+(mm). For different accuracy, range, sensor model or units, different
+coefficients may be required. Use the setPolyFitCoeffs method to define custom
+coefficients. Use the setValMinMax method to define different analog values
+range.
 
 The distance output is filtered using median filtering. The following library
 is required: https://github.com/daPhoosa/MedianFilter.
@@ -55,35 +57,39 @@ public:
   /** Constructor
     pin:    Arduino analog pin the sensor is connected to
     mfSize: Window size of the median filter (1 = no filtering)
-    valMin: Minimal analog value for which to return a distance
-    valMax: Maximal analog value for which to return a distance
   **/
-  SharpDistSensor(const byte pin, const byte size = 1,
-    const uint16_t valMin = 30, const uint16_t valMax = 875);
+  SharpDistSensor(const byte pin, const byte size = 1);
 
   // Returns the measured distance
   uint16_t getDist();
 
+  /* Set the polynomial fit curve coefficients and range
+    nbCoeffs: Number of coefficients (1 min, 6 max)
+    coeffs:   Coefficients (x^0 to x^5)
+    valMin: Minimal analog value for which to return a distance
+    valMax: Maximal analog value for which to return a distance
+  */
+  void setPolyFitCoeffs(const byte nbCoeffs, const float* coeffs,
+    const uint16_t valMin, const uint16_t valMax);
+
+  // Set the analog value range for which to return a distance
+  void setValMinMax(uint16_t valMin, uint16_t valMax);
+
 private:
   // Arduino analog pin the sensor is connected to
-  byte sensPin;
+  byte _pin;
 
   // Window size of the median filter (0 = no filtering)
-  byte mfSize;
+  byte _mfSize;
 
   // Minimal analog value for which to return a distance
-  uint16_t sensValMin;
+  uint16_t _valMin;
 
   // Maximal analog value for which to return a distance
-  uint16_t sensValMax;
+  uint16_t _valMax;
 
   // Polynomial curve coefficients to convert analog signal to distance (in mm)
-  const float C5 = -2.037E-12; // The x^5 coefficient
-  const float C4 = 1.167E-8;  // The x^4 coefficient
-  const float C3 = -2.251E-5; // The x^3 coefficient
-  const float C2 = 2.023E-2;  // The x^2 coefficient
-  const float C1 = -9.005;    // The x^1 coefficient
-  const uint16_t C0 = 1734;   // The constant term
+  float _coeffs[6];
 
   // Median filter object instance
   MedianFilter medFilt;

@@ -1,5 +1,5 @@
 /*
-SharpDistSensorDemo.ino
+SharpDistSensorCustom.ino
 Source: https://github.com/DrGFreeman/SharpDistSensor
 
 MIT License
@@ -28,38 +28,53 @@ SOFTWARE.
 /*
 This example shows how to use the SharpDistSensor library to continuously
 read the sensor and display the analog value and the corrseponding distance
-(in mm).
+using custom polynomial fit curve and range.
+
+The same values as the library default values for the Sharp GP2Y0A60SZLF 5V
+sensor are used for example purpose, however different values may be used
+for different sensors, units, calibration or range.
 */
 
 #include <SharpDistSensor.h>
 
 // Analog pin to which the sensor is connected
-const byte pin = A0;
+const byte sensorPin = A0;
 
-// Minimum and maximum analog values for which to return a distance
-// Full calibration range is from 30 to 875 (~1500-50 mm)
+// Window size of the median filter (odd number, 1 = no filtering)
+const byte mediumFilterWindowSize = 5;
+
+// Create an object instance of the SharpDistSensor class
+SharpDistSensor sensor(sensorPin, mediumFilterWindowSize);
+
+/*
+ * Polynomial fit curve coefficients C0 to C5 in relation:
+ * Distance = C0 + C1*A + C2*A^2 + ... + C5*A^5
+ * where A is the analog value read from the sensor
+ * One coefficient minimum, six maximum (5th order polynomial)
+ */
+const float polyCoefficients[] = {1734, -9.005, 2.023E-2, -2.251E-5, 1.167E-8, -2.037E-12};
+const byte nbCoefficients = 6;  // Number of coefficients
+
+/*
+ * Minimum and maximum analog values for which to return a distance
+ * These should represent a range of analog values within which the
+ * polynomial fit curve is valid.
+ */
 const uint16_t minVal = 134; // ~800 mm
 const uint16_t maxVal = 875; // ~50mm
 
-// Window size of the median filter (odd number, 1 = no filtering)
-const byte mfSize = 5;
-
-
-// Create an object instance of the SharpDistSensor class
-SharpDistSensor sensor(pin, mfSize, minVal, maxVal);
-
-// For default values (no filtering, full range), use line below
-//SharpDistSensor sensor(pin);
-
 void setup() {
   Serial.begin(9600);
+
+  // Set custom polynomial fit curve coefficients and range
+  sensor.setPolyFitCoeffs(nbCoefficients, polyCoefficients, minVal, maxVal);
 }
 
 void loop() {
   /* Print raw analog value. This step is not required to read the sensor,
      it is included here to show the relation between the raw analog value
      and the returned distance. */
-  Serial.print(analogRead(pin));
+  Serial.print(analogRead(sensorPin));
 
   Serial.print(", ");
 
@@ -69,5 +84,3 @@ void loop() {
   // Wait some time
   delay(50);
 }
-
-

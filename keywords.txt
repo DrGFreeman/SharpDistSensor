@@ -1,3 +1,4 @@
 SharpDistSensor	KEYWORD1
-
-getDist KEYWORD2
+getDist	KEYWORD2
+setPolyFitCoeffs	KEYWORD2
+setValMinMax	KEYWORD2
