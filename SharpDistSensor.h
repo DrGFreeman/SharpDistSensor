@@ -43,8 +43,8 @@ Use the setPolyFitCoeffs method to define custom coefficients.
 
 Use the setValMinMax method to define different analog values range.
 
-The distance output is filtered using median filtering. The following library
-is required: https://github.com/daPhoosa/MedianFilter.
+The distance output is filtered using median filtering. MedianFilter class from
+the following library is used: https://github.com/daPhoosa/MedianFilter.
 */
 
 #ifndef SharpDistSensor_h
