@@ -1,13 +1,13 @@
 # SharpDistSensor
 A library for the Arduino IDE that helps interface with Sharp analog distance sensors.  
 
-Version 0.2.2  
+Version 0.2.3  
 [![Build Status](https://travis-ci.org/DrGFreeman/SharpDistSensor.svg?branch=master)](https://travis-ci.org/DrGFreeman/SharpDistSensor)  
 By Julien de la Bruère-Terreault (drgfreeman@tuta.io)
 
 ## Summary
 The analog value from the sensor is converted to distance using a polynomial fit curve up to fifth order.
-The default polynomial coefficients in this library are calibrated for the Sharp GP2Y0A60SZLF Analog Distance Sensor 10-150cm 5V, over a range of 50-1500 mm (analog values 30-875). The returned distance are in millimeters (mm) units.  
+The default polynomial coefficients in this library are calibrated for the Sharp GP2Y0A60SZLF Analog Distance Sensor 10-150cm 5V, over a range of 50-1500 mm (analog values 30-875). The returned distance is in millimeters (mm) units.  
 For different accuracy, range, sensor model or units, different coefficients may be required.  
 The distance output is filtered using real-time median filtering (moving window of ajustable size). The MedianFilter class from the following library is used: https://github.com/daPhoosa/MedianFilter.
 

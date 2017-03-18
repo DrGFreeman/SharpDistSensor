@@ -78,8 +78,11 @@ void loop() {
 
   Serial.print(", ");
 
-  // Get and print distance from sensor
-  Serial.println(sensor.getDist());
+  // Get distance from sensor
+  unsigned int distance = sensor.getDist();
+
+  // Print distance to Serial
+  Serial.println(distance);
 
   // Wait some time
   delay(50);
