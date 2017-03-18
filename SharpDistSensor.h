@@ -76,7 +76,7 @@ public:
     const uint16_t valMin, const uint16_t valMax);
 
   // Set the analog value range for which to return a distance
-  void setValMinMax(uint16_t valMin, uint16_t valMax);
+  void setValMinMax(const uint16_t valMin, const uint16_t valMax);
 
 private:
   // Arduino analog pin the sensor is connected to

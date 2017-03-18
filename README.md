@@ -27,8 +27,8 @@ Returns the measured distance. Distance units are in millimeters (mm) if using t
 
 * `void setPolyFitCoeffs(const byte nbCoeffs, const float* coeffs, const uint16_t valMin, const uint16_t valMax)`  
 Sets the polynomial fit curve coefficients C0 to C5 in the relation:  
-Distance = C0 + C1 * A + C2 * A^2 + ... + C5 * A^5  
+_Distance = C0 + C1 * A + C2 * A^2 + ... + C5 * A^5_  
 where A is the analog value read from the sensor. At least one coefficient must be provided and up to six maximum (5th order polynomial). `nbCoeffs` is the number of coefficients passed and `coeffs` a vector containing the coefficients (C0 to C5). `valMin` and `valMax` define the range of analog values for which the polynomial fit is valid. Analog values outside this range will be set to the respective min or max values.  
 
-* `void setValMinMax(uint16_t valMin, uint16_t valMax)`  
+* `void setValMinMax(const uint16_t valMin, const uint16_t valMax)`  
 Sets the range of analog values for which the polynomial fit is valid (`valMin` and `valMax`). Analog values outside this range will be set to the respective min or max values.
