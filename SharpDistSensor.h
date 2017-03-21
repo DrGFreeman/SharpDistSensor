@@ -39,6 +39,10 @@ Sharp GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V over a range of 50-1500
 mm (analog values 30-875). Distance units are millimeters (mm). For different
 accuracy, range, sensor model or units, different coefficients may be required.
 
+Use the setModel method to change the sensor model calibration. The following
+models are currently supported:
+-GP2Y0A60SZLF_5V (GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V)
+
 Use the setPolyFitCoeffs method to define custom coefficients.
 
 Use the setValMinMax method to define different analog values range.
@@ -66,6 +70,9 @@ public:
   // Return the measured distance
   uint16_t getDist();
 
+  // Set the sensor model
+  void setModel(const byte model);
+
   /* Set the polynomial fit curve coefficients and range
     nbCoeffs: Number of coefficients (1 min, 6 max)
     coeffs:   Coefficients (x^0 to x^5)
@@ -77,6 +84,12 @@ public:
 
   // Set the analog value range for which to return a distance
   void setValMinMax(const uint16_t valMin, const uint16_t valMax);
+
+  enum models
+  {
+    // Constant for GP2Y0A60SZLF 5V model
+    GP2Y0A60SZLF_5V = 0,
+  };
 
 private:
   // Arduino analog pin the sensor is connected to

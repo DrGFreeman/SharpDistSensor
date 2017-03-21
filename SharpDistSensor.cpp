@@ -40,9 +40,8 @@ SharpDistSensor::SharpDistSensor(const byte pin, const byte size) :
   // Window size of the median filter (1 = no filtering)
   _mfSize = size;
 
-  // Set default coefficients and range for Sharp GP2Y0A60SZLF 5V
-  float coeffs[] = {1734, -9.005, 2.023E-2, -2.251E-5, 1.167E-8, -2.037E-12};
-  setPolyFitCoeffs(6, coeffs, 30, 875);
+  // Set default sensor model to GP2Y0A60SZLF 5V
+  setModel(GP2Y0A60SZLF_5V);
 }
 
 // Return the measured distance
@@ -77,6 +76,21 @@ uint16_t SharpDistSensor::getDist()
   }
 
   return dist;
+}
+
+// Set the sensor model
+void SharpDistSensor::setModel(const byte model)
+{
+  switch (model)
+  {
+    case GP2Y0A60SZLF_5V:
+    {
+      // Set default coefficients and range for Sharp GP2Y0A60SZLF 5V
+      float coeffs[] = {1734, -9.005, 2.023E-2, -2.251E-5, 1.167E-8, -2.037E-12};
+      setPolyFitCoeffs(6, coeffs, 30, 875);
+      break;
+    }
+  }
 }
 
 // Set the polynomial fit curve coefficients and range
