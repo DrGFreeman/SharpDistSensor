@@ -45,5 +45,5 @@ Sets the range of analog values for which the polynomial fit is valid (`valMin` 
 * `GP2Y0A60SZLF_5V` - GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V
 
 ## Version history
-* 0.3.0 (Date): Added method to set calibration based on pre-defined sensor
+* 0.3.0 2017-03-24: Added method to set calibration based on pre-defined sensor
 models.
