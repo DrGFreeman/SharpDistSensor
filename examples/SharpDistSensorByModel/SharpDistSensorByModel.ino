@@ -27,9 +27,9 @@ SOFTWARE.
 
 /*
 This example shows how to use the SharpDistSensor library to continuously
-read the sensor and display the analog value and the corrseponding distance
-in mm using a pre-defined sensor model. See the library README page for the
-list of available models and corresponding constants.
+read the sensor and display the distance in mm using a pre-defined sensor model.
+See the library README page for the list of available models and corresponding
+constants.
 
 For how to use different sensor model, units, range or calibration with a
 custom calibration curve, see the SharpDistSensorCustom.ino example sketch in
