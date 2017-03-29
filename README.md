@@ -1,15 +1,18 @@
 # SharpDistSensor
 A library for the Arduino IDE that helps interface with Sharp analog distance sensors.  
 
-Version 0.3.0  
+Version 0.3.1  
 [![Build Status](https://travis-ci.org/DrGFreeman/SharpDistSensor.svg?branch=master)](https://travis-ci.org/DrGFreeman/SharpDistSensor)  
 By Julien de la Bruère-Terreault (drgfreeman@tuta.io)
 
 ## Summary
 The analog value from the sensor is converted to distance using a polynomial fit curve up to fifth order.
+
 The default polynomial coefficients in this library are calibrated for the Sharp GP2Y0A60SZLF Analog Distance Sensor 10-150cm 5V, over a range of 50-1500 mm (analog values 30-875). The returned distance is in millimeters (mm) units.  
+
 For different accuracy, range, sensor model or units, different coefficients may be required.  
-The distance output is filtered using real-time median filtering (moving window of ajustable size). The MedianFilter class from the following library is used: https://github.com/daPhoosa/MedianFilter.
+
+The distance output is filtered using real-time median filtering (sliding window of ajustable size). The MedianFilter class from the following library is used: https://github.com/daPhoosa/MedianFilter.
 
 ## Examples
 Three example sketches are provided with the library:
@@ -42,8 +45,13 @@ where _A_ is the analog value read from the sensor. At least one coefficient mus
 Sets the range of analog values for which the polynomial fit is valid (`valMin` and `valMax`). Analog values outside this range will be set to the respective min or max values.
 
 ## Pre-defined sensor models
-* `GP2Y0A60SZLF_5V` - GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V
+* `GP2Y0A60SZLF_5V` - GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V  
+
+Model | C0 | C1 | C2 | C3 | C4 | C5 | valMin | valMax
+------|----|----|----|----|----|----|--------|--------
+**GP2Y0A60SZLF_5V** | 1734 | -9.005 | 2.032E-2 | -2.251E-5 | 1.167E-8 | -2.037E-12 | 30 | 875
 
 ## Version history
+* 0.3.1 (2017-03-28): Improved README and fixed comments in SharpDistSensorByModel example.
 * 0.3.0 (2017-03-24): Added method to set calibration based on pre-defined sensor
 models.
