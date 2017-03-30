@@ -51,14 +51,7 @@ uint16_t SharpDistSensor::getDist()
   uint16_t sensVal = analogRead(_pin);
 
   // Constrain sensor values to remain within set min-max range
-  if (sensVal < _valMin)
-  {
-    sensVal = _valMin;
-  }
-  else if (sensVal > _valMax)
-  {
-    sensVal = _valMax;
-  }
+  sensVal = constrain(sensVal, _valMin, _valMax);
 
   // Calculate distance from polynomial fit curve
   uint16_t dist = 0;
@@ -79,7 +72,7 @@ uint16_t SharpDistSensor::getDist()
 }
 
 // Set the sensor model
-void SharpDistSensor::setModel(const byte model)
+void SharpDistSensor::setModel(const models model)
 {
   switch (model)
   {

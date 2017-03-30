@@ -51,7 +51,7 @@ void setup() {
   Serial.begin(9600);
 
   // Set sensor model
-  sensor.setModel(sensor.GP2Y0A60SZLF_5V);
+  sensor.setModel(SharpDistSensor::GP2Y0A60SZLF_5V);
 }
 
 void loop() {

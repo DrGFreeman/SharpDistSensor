@@ -60,6 +60,12 @@ the following library is used: https://github.com/daPhoosa/MedianFilter.
 class SharpDistSensor
 {
 public:
+  // List of pre-defined sensor models
+  enum models
+  {
+    // Constant for GP2Y0A60SZLF 5V model
+    GP2Y0A60SZLF_5V
+  };
 
   /** Constructor
     pin:    Arduino analog pin the sensor is connected to
@@ -71,7 +77,7 @@ public:
   uint16_t getDist();
 
   // Set the sensor model
-  void setModel(const byte model);
+  void setModel(const models model);
 
   /* Set the polynomial fit curve coefficients and range
     nbCoeffs: Number of coefficients (1 min, 6 max)
@@ -84,12 +90,6 @@ public:
 
   // Set the analog value range for which to return a distance
   void setValMinMax(const uint16_t valMin, const uint16_t valMax);
-
-  enum models
-  {
-    // Constant for GP2Y0A60SZLF 5V model
-    GP2Y0A60SZLF_5V = 0,
-  };
 
 private:
   // Arduino analog pin the sensor is connected to

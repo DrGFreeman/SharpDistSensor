@@ -1,7 +1,7 @@
 # SharpDistSensor
 A library for the Arduino IDE that helps interface with Sharp analog distance sensors.  
 
-Version 0.3.1  
+Version 0.3.2  
 [![Build Status](https://travis-ci.org/DrGFreeman/SharpDistSensor.svg?branch=master)](https://travis-ci.org/DrGFreeman/SharpDistSensor)  
 By Julien de la Bruère-Terreault (drgfreeman@tuta.io)
 
@@ -52,6 +52,6 @@ Model | C0 | C1 | C2 | C3 | C4 | C5 | valMin | valMax
 **GP2Y0A60SZLF_5V** | 1734 | -9.005 | 2.032E-2 | -2.251E-5 | 1.167E-8 | -2.037E-12 | 30 | 875
 
 ## Version history
+* 0.3.2 (2017-03-29): Modified models enum and related type in setModel method arguments.
 * 0.3.1 (2017-03-28): Improved README and fixed comments in SharpDistSensorByModel example.
-* 0.3.0 (2017-03-24): Added method to set calibration based on pre-defined sensor
-models.
+* 0.3.0 (2017-03-24): Added method to set calibration based on pre-defined sensor models.
