@@ -53,14 +53,23 @@ uint16_t SharpDistSensor::getDist()
   // Constrain sensor values to remain within set min-max range
   sensVal = constrain(sensVal, _valMin, _valMax);
 
-  // Calculate distance from polynomial fit curve
   uint16_t dist = 0;
-  dist += _coeffs[5] * pow(sensVal, 5);
-  dist += _coeffs[4] * pow(sensVal, 4);
-  dist += _coeffs[3] * pow(sensVal, 3);
-  dist += _coeffs[2] * pow(sensVal, 2);
-  dist += _coeffs[1] * sensVal;
-  dist += _coeffs[0];
+
+  if (_fitType == FIT_POLY)
+  {
+    // Calculate distance from polynomial fit function
+    dist += _polyCoeffs[5] * pow(sensVal, 5);
+    dist += _polyCoeffs[4] * pow(sensVal, 4);
+    dist += _polyCoeffs[3] * pow(sensVal, 3);
+    dist += _polyCoeffs[2] * pow(sensVal, 2);
+    dist += _polyCoeffs[1] * sensVal;
+    dist += _polyCoeffs[0];
+  }
+  else if (_fitType == FIT_POWER)
+  {
+    // Calculate distance from power fit function
+    dist = _powerCoeffC * pow(sensVal, _powerCoeffP);
+  }
 
   if (_mfSize > 1)
   {
@@ -86,24 +95,42 @@ void SharpDistSensor::setModel(const models model)
   }
 }
 
-// Set the polynomial fit curve coefficients and range
+// Set the polynomial fit function coefficients and range
 void SharpDistSensor::setPolyFitCoeffs(const byte nbCoeffs,
   const float* coeffs, const uint16_t valMin, const uint16_t valMax)
 {
+  // Set fit type to FIT_POLY
+  _fitType = FIT_POLY;
+
   // Set coefficients
   for (byte i = 0; i < 6; i++)
   {
     if (i < nbCoeffs)
     {
       // Coefficient is provided
-      _coeffs[i] = coeffs[i];
+      _polyCoeffs[i] = coeffs[i];
     }
     else
     {
       // Coefficient is not provided, set to zero
-      _coeffs[i] = 0;
+      _polyCoeffs[i] = 0;
     }
   }
+
+  // Set analog value range
+  setValMinMax(valMin, valMax);
+}
+
+// Set the power fit function coefficients and range
+void SharpDistSensor::setPowerFitCoeffs(const float C, const float P,
+  const uint16_t valMin, const uint16_t valMax)
+{
+  // Set fit type to FIT_POWER
+  _fitType = FIT_POWER;
+
+  // Set power fit function coefficients
+  _powerCoeffC = C;
+  _powerCoeffP = P;
 
   // Set analog value range
   setValMinMax(valMin, valMax);

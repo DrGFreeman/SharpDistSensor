@@ -1,5 +1,5 @@
 /*
-SharpDistSensorCustom.ino
+SharpDistSensorCustomPower.ino
 Source: https://github.com/DrGFreeman/SharpDistSensor
 
 MIT License
@@ -28,11 +28,7 @@ SOFTWARE.
 /*
 This example shows how to use the SharpDistSensor library to continuously
 read the sensor and display the analog value and the corrseponding distance
-using custom polynomial fit curve and range.
-
-The same values as the library default values for the Sharp GP2Y0A60SZLF 5V
-sensor are used for example purpose, however different values may be used
-for different sensors, units, calibration or range.
+using custom power fit curve and range.
 */
 
 #include <SharpDistSensor.h>
@@ -46,28 +42,26 @@ const byte mediumFilterWindowSize = 5;
 // Create an object instance of the SharpDistSensor class
 SharpDistSensor sensor(sensorPin, mediumFilterWindowSize);
 
-/*
- * Polynomial fit curve coefficients C0 to C5 in relation:
- * Distance = C0 + C1*A + C2*A^2 + ... + C5*A^5
- * where A is the analog value read from the sensor
- * One coefficient minimum, six maximum (5th order polynomial)
+/* Set the power fit curve coefficients and range
+ * C and P: Coefficients in Distance = C*A^P relation
+ * where A is the analog value read from the sensor.
  */
-const float polyCoefficients[] = {1734, -9.005, 2.023E-2, -2.251E-5, 1.167E-8, -2.037E-12};
-const byte nbCoefficients = 6;  // Number of coefficients
+const float C = 90373.;
+const float P = -1.027;
 
 /*
  * Minimum and maximum analog values for which to return a distance
  * These should represent a range of analog values within which the
- * polynomial fit curve is valid.
+ * power fit curve is valid.
  */
-const uint16_t minVal = 134; // ~800 mm
-const uint16_t maxVal = 875; // ~50mm
+const unsigned int minVal = 134; // ~800 mm
+const unsigned int maxVal = 875; // ~50mm
 
 void setup() {
   Serial.begin(9600);
 
-  // Set custom polynomial fit curve coefficients and range
-  sensor.setPolyFitCoeffs(nbCoefficients, polyCoefficients, minVal, maxVal);
+  // Set custom power fit curve coefficients and range
+  sensor.setPowerFitCoeffs(C, P, minVal, maxVal);
 }
 
 void loop() {

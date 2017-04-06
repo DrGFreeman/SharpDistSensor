@@ -31,19 +31,22 @@ SharpDistSensor; Sharp analog distance sensor library
 This is a library for the Arduino IDE that helps interface with Sharp IR analog
 distance sensors.
 
-The analog value from the sensor is converted to distance using a fifth order
-polynomial fit curve.
+The analog value from the sensor is converted to distance using either a fifth
+order polynomial fit function or a power fit function.
 
-The default polynomial coefficients in this lilbrary are calibrated for the
-Sharp GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V over a range of 50-1500
-mm (analog values 30-875). Distance units are millimeters (mm). For different
-accuracy, range, sensor model or units, different coefficients may be required.
+By default, this library is set to use polynomial coefficients calibrated for
+the Sharp GP2Y0A60SZLF Analog Distance Sensor 10-150cm 5V, over a range of
+50-1500 mm (analog values 30-875). The returned distance is in millimeters (mm)
+units.  For different accuracy, range, sensor model or units, different
+coefficients may be required.
 
 Use the setModel method to change the sensor model calibration. The following
 models are currently supported:
 -GP2Y0A60SZLF_5V (GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V)
 
-Use the setPolyFitCoeffs method to define custom coefficients.
+Use the setPolyFitCoeffs method to define custom polynomial coefficients.
+
+Use the setPowerFitCoeffs method to define custom power coefficients.
 
 Use the setValMinMax method to define different analog values range.
 
@@ -79,13 +82,21 @@ public:
   // Set the sensor model
   void setModel(const models model);
 
-  /* Set the polynomial fit curve coefficients and range
+  /* Set the polynomial fit function coefficients and range
     nbCoeffs: Number of coefficients (1 min, 6 max)
     coeffs:   Coefficients (x^0 to x^5)
     valMin: Minimal analog value for which to return a distance
     valMax: Maximal analog value for which to return a distance
   */
   void setPolyFitCoeffs(const byte nbCoeffs, const float* coeffs,
+    const uint16_t valMin, const uint16_t valMax);
+
+  /* Set the power fit function coefficients and range
+    C and P: Coefficients in Distance = C*x^P relation
+    valMin: Minimal analog value for which to return a distance
+    valMax: Maximal analog value for which to return a distance
+  */
+  void setPowerFitCoeffs(const float C, const float P,
     const uint16_t valMin, const uint16_t valMax);
 
   // Set the analog value range for which to return a distance
@@ -104,8 +115,22 @@ private:
   // Maximal analog value for which to return a distance
   uint16_t _valMax;
 
-  // Polynomial curve coefficients to convert analog signal to distance
-  float _coeffs[6];
+  // Polynomial function coefficients to convert analog signal to distance
+  float _polyCoeffs[6];
+
+  // Power function coefficients to convert analog signal to distance
+  float _powerCoeffC;
+  float _powerCoeffP;
+
+  // Possible types of fit functions
+  enum fitTypes
+  {
+    FIT_POLY,
+    FIT_POWER
+  };
+
+  // Fit function type used
+  fitTypes _fitType;
 
   // Median filter object instance
   MedianFilter medFilt;
