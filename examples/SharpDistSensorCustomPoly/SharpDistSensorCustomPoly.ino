@@ -27,7 +27,7 @@ SOFTWARE.
 
 /*
 This example shows how to use the SharpDistSensor library to continuously
-read the sensor and display the analog value and the corrseponding distance
+read the sensor and display the analog value and the corresponding distance
 using custom polynomial fit curve and range.
 
 The same values as the library default values for the Sharp GP2Y0A60SZLF 5V
