@@ -33,12 +33,8 @@ in mm.
 The library default values corresponding to the Sharp GP2Y0A60SZLF 5V sensor
 are used.
 
-For how to use a different sensor model pre-defined in this library, see the
-SharpDistSensorByModel.ino example sketch in this library.
-
-For how to use different sensor model, units, range or calibration with a
-custom calibration curve, see the SharpDistSensorCustom.ino example sketch in
-this library.
+See the library README for how to use pre-defined sensor models or custom
+fit functions.
 */
 
 #include <SharpDistSensor.h>
