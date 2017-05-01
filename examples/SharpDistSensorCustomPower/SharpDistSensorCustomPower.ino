@@ -27,7 +27,7 @@ SOFTWARE.
 
 /*
 This example shows how to use the SharpDistSensor library to continuously
-read the sensor and display the analog value and the corrseponding distance
+read the sensor and display the analog value and the corresponding distance
 using custom power fit curve and range.
 */
 

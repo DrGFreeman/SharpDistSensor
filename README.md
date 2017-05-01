@@ -1,7 +1,7 @@
 # SharpDistSensor
 A library for the Arduino IDE that helps interface with Sharp analog distance sensors.  
 
-Version 1.1.0  
+Version 1.1.1  
 [![Build Status](https://travis-ci.org/DrGFreeman/SharpDistSensor.svg?branch=master)](https://travis-ci.org/DrGFreeman/SharpDistSensor)  
 By Julien de la Bruère-Terreault (drgfreeman@tuta.io)
 
@@ -60,7 +60,12 @@ Model | Units | C0 | C1 | C2 | C3 | C4 | C5 | valMin | valMax
 ------|-------|----|----|----|----|----|----|--------|--------
 **GP2Y0A60SZLF_5V** | mm | 1734 | -9.005 | 2.032E-2 | -2.251E-5 | 1.167E-8 | -2.037E-12 | 30 | 875
 
+**Important Note:** The analog voltage returned by the sensor is largely dependent of the reflected object size and reflectivity. The distance returned by these pre-defined calibration functions can therefore vary significantly from the real distance depending on the object detected. Where accuracy is required by the application, it is recommended to perform calibration with the object to be detected and use custom calibration fit functions instead.
+
+This library has been designed so that it is easy to add sensor models. Contributions are therefore welcome. Adding models to the library can be done by either submitting a pull request or providing me the proposed fit function and associated calibration data by email so I can add it myself. Thank you for contributing!
+
 ## Version history
+* 1.1.1 (2017-05-01): Clarified comments and fixed typos in examples, improved README.
 * 1.1.0 (2017-04-05): Added support of power fit functions.
 * 1.0.0 (2017-03-29): Initial major release for Arduino Library Manager (no change rel. to 0.3.2)
 * 0.3.2 (2017-03-29): Modified models enum and related type in setModel method arguments.
