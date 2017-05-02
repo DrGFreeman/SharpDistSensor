@@ -69,6 +69,7 @@ public:
   {
     // Constant for GP2Y0A60SZLF 5V model
     GP2Y0A60SZLF_5V,
+    // Constant for GP2Y0A710K0F 5V model
     GP2Y0A710K0F_5V_DS
   };
 

@@ -55,12 +55,12 @@ Sets the range of analog values for which the polynomial or power fit is valid (
 
 ## Pre-defined sensor models
 * `GP2Y0A60SZLF_5V` - GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V
-* `GP2Y0A710K0F_5V_DS` - GP2Y0A710K0F Analog Distance Sensor 100-500cm, 5V
+* `GP2Y0A710K0F_5V_DS` - GP2Y0A710K0F Analog Distance Sensor 100-500cm, 5V (data sheet)
 
 Model | Units | C0 | C1 | C2 | C3 | C4 | C5 | valMin | valMax
 ------|-------|----|----|----|----|----|----|--------|--------
 **GP2Y0A60SZLF_5V** | mm | 1734 | -9.005 | 2.032E-2 | -2.251E-5 | 1.167E-8 | -2.037E-12 | 30 | 875
-**GP2Y0A710K0F_5V_DS** | mm | 178506 | -1606.15 | 5.51312 | -8.45121E-3 | 4.85916E-6 | |  285 | 508
+**GP2Y0A710K0F_5V_DS** | mm | 178506 | -1607.72 | 5.5239 | -8.47601E-3 | 4.87819E-6 | |  284 | 507
 
 **Important Note:** The analog voltage returned by the sensor is largely dependent of the reflected object size and reflectivity. The distance returned by these pre-defined calibration functions can therefore vary significantly from the real distance depending on the object detected. Where accuracy is required by the application, it is recommended to perform calibration with the object to be detected and use custom calibration fit functions instead.
 
