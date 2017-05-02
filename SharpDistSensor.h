@@ -43,6 +43,7 @@ coefficients may be required.
 Use the setModel method to change the sensor model calibration. The following
 models are currently supported:
 -GP2Y0A60SZLF_5V (GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V)
+-GP2Y0A710K0F_5V_DS (GP2Y0A710K0F Analog Distance Sensor 100-500cm, 5V)
 
 Use the setPolyFitCoeffs method to define custom polynomial coefficients.
 
@@ -67,7 +68,8 @@ public:
   enum models
   {
     // Constant for GP2Y0A60SZLF 5V model
-    GP2Y0A60SZLF_5V
+    GP2Y0A60SZLF_5V,
+    GP2Y0A710K0F_5V_DS
   };
 
   /** Constructor
