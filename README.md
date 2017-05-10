@@ -38,7 +38,7 @@ Constructor: `pin` is the analog pin to which the sensor is connected, `size` is
 Returns the measured distance. Distance units are in millimeters (mm) if using the library default settings or pre-defined sensor models. If using custom calibration, units depend on the calibration used.  
 
 * `void setModel(const byte model)`
-Sets the calibration based on pre-defined sensor model fit functions.  
+Sets the calibration based on pre-defined sensor model fit functions. Note that the model argument must be preceded by the SharpDistSensor namespace, i.e.: `setModel(SharpDistSensor::Model_Name)`
 
 * `void setPolyFitCoeffs(const byte nbCoeffs, const float* coeffs, const uint16_t valMin, const uint16_t valMax)`  
 Sets the polynomial fit function coefficients _C0_ to _C5_ in the relation:  
@@ -67,7 +67,7 @@ Model | Units | C0 | C1 | C2 | C3 | C4 | C5 | valMin | valMax
 This library has been designed so that it is easy to add sensor models. Contributions are therefore welcome. Adding models to the library can be done by either submitting a pull request or providing me the proposed fit function and associated calibration data by email so I can add it myself. Thank you for contributing!
 
 ## Version history
-* 1.2.0 (TBD): Added GP2Y0A710K0F_DS model.
+* 1.2.0 (2017-05-10): Added GP2Y0A710K0F_5V_DS model.
 * 1.1.1 (2017-05-01): Clarified comments and fixed typos in examples, improved README.
 * 1.1.0 (2017-04-05): Added support of power fit functions.
 * 1.0.0 (2017-03-29): Initial major release for Arduino Library Manager (no change rel. to 0.3.2)
