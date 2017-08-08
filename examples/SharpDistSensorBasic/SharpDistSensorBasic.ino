@@ -27,8 +27,7 @@ SOFTWARE.
 
 /*
 This example shows how to use the SharpDistSensor library to continuously
-read the sensor and display the analog value and the corrseponding distance
-in mm.
+read the sensor and display the measured distance in mm to the serial monitor.
 
 The library default values corresponding to the Sharp GP2Y0A60SZLF 5V sensor
 are used.
