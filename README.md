@@ -84,6 +84,7 @@ Model | valMin | valMax
 This library has been designed so that it is easy to add sensor models. Contributions are therefore welcome. Adding models to the library can be done by either submitting a pull request or providing me the proposed fit function and associated calibration data by email so I can add it myself. Thank you for contributing!
 
 ## Version history
+* 1.4.0 (2018-05-21): Added GP2Y0A51SK0F_5V_DS model.
 * 1.3.0 (2018-05-20): Added SharpDistSensorArray example.
 * 1.2.0 (2017-05-10): Added GP2Y0A710K0F_5V_DS model.
 * 1.1.1 (2017-05-01): Clarified comments and fixed typos in examples, improved README.
