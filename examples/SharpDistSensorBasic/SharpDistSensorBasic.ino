@@ -42,10 +42,10 @@ fit functions.
 const byte sensorPin = A0;
 
 // Window size of the median filter (odd number, 1 = no filtering)
-const byte mediumFilterWindowSize = 5;
+const byte medianFilterWindowSize = 5;
 
 // Create an object instance of the SharpDistSensor class
-SharpDistSensor sensor(sensorPin, mediumFilterWindowSize);
+SharpDistSensor sensor(sensorPin, medianFilterWindowSize);
 
 
 void setup() {
