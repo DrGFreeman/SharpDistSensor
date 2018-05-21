@@ -1,7 +1,7 @@
 # SharpDistSensor
 A library for the Arduino IDE that helps interface with Sharp analog distance sensors.  
 
-Version 1.3.0  
+Version 1.4.0  
 [![Build Status](https://travis-ci.org/DrGFreeman/SharpDistSensor.svg?branch=master)](https://travis-ci.org/DrGFreeman/SharpDistSensor)  
 By Julien de la Bruère-Terreault (drgfreeman@tuta.io)
 
@@ -58,19 +58,33 @@ where _A_ is the analog value read from the sensor. `valMin` and `valMax` define
 Sets the range of analog values for which the polynomial or power fit is valid (`valMin` and `valMax`). Analog values outside this range will be set to the respective min or max values.
 
 ## Pre-defined sensor models
-* `GP2Y0A60SZLF_5V` - GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V
-* `GP2Y0A710K0F_5V_DS` - GP2Y0A710K0F Analog Distance Sensor 100-500cm, 5V (data sheet)
+* `GP2Y0A60SZLF_5V`: GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V, polynomial fit.
+* `GP2Y0A710K0F_5V_DS`: GP2Y0A710K0F Analog Distance Sensor 100-500cm, 5V (data sheet), polynomial fit.
+* `GP2Y0A51SK0F_5V_DS`: GP2Y0A51SK0F Analog Distance Sensor 2-15cm, 5V (data sheet), power fit.
 
-Model | Units | C0 | C1 | C2 | C3 | C4 | C5 | valMin | valMax
-------|-------|----|----|----|----|----|----|--------|--------
-**GP2Y0A60SZLF_5V** | mm | 1734 | -9.005 | 2.032E-2 | -2.251E-5 | 1.167E-8 | -2.037E-12 | 30 | 875
-**GP2Y0A710K0F_5V_DS** | mm | 178506 | -1607.72 | 5.5239 | -8.47601E-3 | 4.87819E-6 | |  284 | 507
+#### Polynomial / Power fit coefficients:
+
+Model | Units | C0/C | C1/P | C2 | C3 | C4 | C5
+------|-------|----|----|----|----|----|----
+**GP2Y0A60SZLF_5V** | mm | 1734 | -9.005 | 2.032E-2 | -2.251E-5 | 1.167E-8 | -2.037E-12
+**GP2Y0A710K0F_5V_DS** | mm | 178506 | -1607.72 | 5.5239 | -8.47601E-3 | 4.87819E-6 |
+**GP2Y0A51SK0F_5V_DS** | mm | 4.03576E+4 | -1.26093 | | | |
+
+#### Analog values range:
+
+Model | valMin | valMax
+------|--------|--------
+**GP2Y0A60SZLF_5V** | 30 | 875
+**GP2Y0A710K0F_5V_DS** | 284 | 507
+**GP2Y0A51SK0F_5V_DS** | 70 | 500
+
 
 **Important Note:** The analog voltage returned by the sensor is largely dependent of the reflected object size and reflectivity. The distance returned by these pre-defined calibration functions can therefore vary significantly from the real distance depending on the object detected. Where accuracy is required by the application, it is recommended to perform calibration with the object to be detected and use custom calibration fit functions instead.
 
 This library has been designed so that it is easy to add sensor models. Contributions are therefore welcome. Adding models to the library can be done by either submitting a pull request or providing me the proposed fit function and associated calibration data by email so I can add it myself. Thank you for contributing!
 
 ## Version history
+* 1.4.0 (2018-05-21): Added GP2Y0A51SK0F_5V_DS model.
 * 1.3.0 (2018-05-20): Added SharpDistSensorArray example.
 * 1.2.0 (2017-05-10): Added GP2Y0A710K0F_5V_DS model.
 * 1.1.1 (2017-05-01): Clarified comments and fixed typos in examples, improved README.

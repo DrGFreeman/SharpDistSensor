@@ -4,7 +4,7 @@ Source: https://github.com/DrGFreeman/SharpDistSensor
 
 MIT License
 
-Copyright (c) 2017 Julien de la Bruere-Terreault <drgfreeman@tuta.io>
+Copyright (c) 2018 Julien de la Bruere-Terreault <drgfreeman@tuta.io>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -97,6 +97,12 @@ void SharpDistSensor::setModel(const models model)
       // Set coefficients and range for Sharp GP2Y0A710K0F 5V
       float coeffs[] = {178506, -1607.72, 5.5239, -8.47601E-3, 4.87819E-6};
       setPolyFitCoeffs(5, coeffs, 284, 507);
+      break;
+    }
+    case GP2Y0A51SK0F_5V_DS:
+    {
+      // Set coefficients and range for Sharp GP2Y0A51SK0F 5V
+      setPowerFitCoeffs(4.03576E+4, -1.26093, 70, 500);
       break;
     }
   }
