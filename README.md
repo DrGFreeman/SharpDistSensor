@@ -58,13 +58,26 @@ where _A_ is the analog value read from the sensor. `valMin` and `valMax` define
 Sets the range of analog values for which the polynomial or power fit is valid (`valMin` and `valMax`). Analog values outside this range will be set to the respective min or max values.
 
 ## Pre-defined sensor models
-* `GP2Y0A60SZLF_5V` - GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V
-* `GP2Y0A710K0F_5V_DS` - GP2Y0A710K0F Analog Distance Sensor 100-500cm, 5V (data sheet)
+* `GP2Y0A60SZLF_5V`: GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V, polynomial fit.
+* `GP2Y0A710K0F_5V_DS`: GP2Y0A710K0F Analog Distance Sensor 100-500cm, 5V (data sheet), polynomial fit.
+* `GP2Y0A51SK0F_5V_DS`: GP2Y0A51SK0F Analog Distance Sensor 2-15cm, 5V (data sheet), power fit.
 
-Model | Units | C0 | C1 | C2 | C3 | C4 | C5 | valMin | valMax
-------|-------|----|----|----|----|----|----|--------|--------
-**GP2Y0A60SZLF_5V** | mm | 1734 | -9.005 | 2.032E-2 | -2.251E-5 | 1.167E-8 | -2.037E-12 | 30 | 875
-**GP2Y0A710K0F_5V_DS** | mm | 178506 | -1607.72 | 5.5239 | -8.47601E-3 | 4.87819E-6 | |  284 | 507
+#### Polynomial / Power fit coefficients:
+
+Model | Units | C0/C | C1/P | C2 | C3 | C4 | C5
+------|-------|----|----|----|----|----|----
+**GP2Y0A60SZLF_5V** | mm | 1734 | -9.005 | 2.032E-2 | -2.251E-5 | 1.167E-8 | -2.037E-12
+**GP2Y0A710K0F_5V_DS** | mm | 178506 | -1607.72 | 5.5239 | -8.47601E-3 | 4.87819E-6 |
+**GP2Y0A51SK0F_5V_DS** | mm | 4.03576E+4 | -1.26093 | | | |
+
+#### Analog values range:
+
+Model | valMin | valMax
+------|--------|--------
+**GP2Y0A60SZLF_5V** | 30 | 875
+**GP2Y0A710K0F_5V_DS** | 284 | 507
+**GP2Y0A51SK0F_5V_DS** | 70 | 500
+
 
 **Important Note:** The analog voltage returned by the sensor is largely dependent of the reflected object size and reflectivity. The distance returned by these pre-defined calibration functions can therefore vary significantly from the real distance depending on the object detected. Where accuracy is required by the application, it is recommended to perform calibration with the object to be detected and use custom calibration fit functions instead.
 

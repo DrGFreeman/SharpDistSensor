@@ -4,7 +4,7 @@ Source: https://github.com/DrGFreeman/SharpDistSensor
 
 MIT License
 
-Copyright (c) 2017 Julien de la Bruere-Terreault <drgfreeman@tuta.io>
+Copyright (c) 2018 Julien de la Bruere-Terreault <drgfreeman@tuta.io>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -70,7 +70,9 @@ public:
     // Constant for GP2Y0A60SZLF 5V model
     GP2Y0A60SZLF_5V,
     // Constant for GP2Y0A710K0F 5V model
-    GP2Y0A710K0F_5V_DS
+    GP2Y0A710K0F_5V_DS,
+    // Constant for GP2Y0A51SK0F 5V model
+    GP2Y0A51SK0F_5V_DS,
   };
 
   /** Constructor
