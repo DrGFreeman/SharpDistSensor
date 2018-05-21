@@ -27,8 +27,7 @@ SOFTWARE.
 
 /*
 This example shows how to use the SharpDistSensor library to continuously
-read the sensor and display the analog value and the corrseponding distance
-in mm.
+read the sensor and display the measured distance in mm to the serial monitor.
 
 The library default values corresponding to the Sharp GP2Y0A60SZLF 5V sensor
 are used.
@@ -43,10 +42,10 @@ fit functions.
 const byte sensorPin = A0;
 
 // Window size of the median filter (odd number, 1 = no filtering)
-const byte mediumFilterWindowSize = 5;
+const byte medianFilterWindowSize = 5;
 
 // Create an object instance of the SharpDistSensor class
-SharpDistSensor sensor(sensorPin, mediumFilterWindowSize);
+SharpDistSensor sensor(sensorPin, medianFilterWindowSize);
 
 
 void setup() {

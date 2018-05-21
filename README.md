@@ -1,7 +1,7 @@
 # SharpDistSensor
 A library for the Arduino IDE that helps interface with Sharp analog distance sensors.  
 
-Version 1.2.0  
+Version 1.3.0  
 [![Build Status](https://travis-ci.org/DrGFreeman/SharpDistSensor.svg?branch=master)](https://travis-ci.org/DrGFreeman/SharpDistSensor)  
 By Julien de la Bruère-Terreault (drgfreeman@tuta.io)
 
@@ -16,7 +16,8 @@ For different accuracy, range, sensor model or units, different coefficients may
 The distance output is filtered using real-time median filtering (sliding window of ajustable size). The MedianFilter class from the following library is used: https://github.com/daPhoosa/MedianFilter.
 
 ## Examples
-Four example sketches are provided with the library:
+Five example sketches are provided with the library:
+
 * _SharpDistSensorBasic.ino_  
 This example shows how to use the library with the default calibration function for the Sharp GP2Y0A60SZLF 5V sensor.
 
@@ -29,6 +30,9 @@ This example shows how to use the library with a custom, user defined polynomial
 
 * _SharpDistSensorCustomPower.ino_  
 This example shows how to use the library with a custom, user defined power calibration function.
+
+* _SharpDistSensorArray.ino_  
+This example shows how to use the library with an array of multiple sensors.
 
 ## Library Reference
 * `SharpDistSensor(const byte pin, const byte size = 1)`  
@@ -67,6 +71,7 @@ Model | Units | C0 | C1 | C2 | C3 | C4 | C5 | valMin | valMax
 This library has been designed so that it is easy to add sensor models. Contributions are therefore welcome. Adding models to the library can be done by either submitting a pull request or providing me the proposed fit function and associated calibration data by email so I can add it myself. Thank you for contributing!
 
 ## Version history
+* 1.3.0 (2018-05-20): Added SharpDistSensorArray example.
 * 1.2.0 (2017-05-10): Added GP2Y0A710K0F_5V_DS model.
 * 1.1.1 (2017-05-01): Clarified comments and fixed typos in examples, improved README.
 * 1.1.0 (2017-04-05): Added support of power fit functions.
