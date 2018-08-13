@@ -3,7 +3,7 @@ A library for the Arduino IDE that helps interface with Sharp analog distance se
 
 Version 1.4.1  
 [![Build Status](https://travis-ci.org/DrGFreeman/SharpDistSensor.svg?branch=master)](https://travis-ci.org/DrGFreeman/SharpDistSensor)  
-By Julien de la Bruère-Terreault (drgfreeman@tuta.io)
+By Julien de la Bruère-Terreault (drgfreeman@tuta.io) 
 
 ## Summary
 The analog value from the sensor is converted to distance using either a
