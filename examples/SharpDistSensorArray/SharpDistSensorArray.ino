@@ -68,4 +68,8 @@ void loop() {
   for (byte i = 0; i < nbSensors; i++) {
     distArray[i] = sensorArray[i].getDist();
   }
+
+  // The measured distances can now be accessed through the different indices of the
+  // distArray array, i.e. distArray[0] for the first sensor, distArray[1] for the
+  // sencond sensor ...
 }
