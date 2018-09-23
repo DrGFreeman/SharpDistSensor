@@ -1,9 +1,9 @@
 # SharpDistSensor
 A library for the Arduino IDE that helps interface with Sharp analog distance sensors.  
 
-Version 1.4.1  
+Version 1.4.2  
 [![Build Status](https://travis-ci.org/DrGFreeman/SharpDistSensor.svg?branch=master)](https://travis-ci.org/DrGFreeman/SharpDistSensor)  
-By Julien de la Bruère-Terreault (drgfreeman@tuta.io) 
+By Julien de la Bruère-Terreault (drgfreeman@tuta.io)
 
 ## Summary
 The analog value from the sensor is converted to distance using either a
@@ -11,7 +11,7 @@ polynomial fit function up to fifth order or a power fit function.
 
 By default, this library is set to use polynomial coefficients calibrated for the Sharp GP2Y0A60SZLF Analog Distance Sensor 10-150cm 5V, over a range of 50-1500 mm (analog values 30-875). The returned distance is in millimeters (mm) units.  
 
-For different accuracy, range, sensor model or units, different coefficients may be required.  
+The library also allows the use of pre-defined calibrations for different sensor models as well as custom defined polynomial or power fit functions. Examples are provided showing how to use pre-defined calibrations or how to define custom fit functions.
 
 The distance output is filtered using real-time median filtering (sliding window of ajustable size). The MedianFilter class from the following library is used: https://github.com/daPhoosa/MedianFilter.
 
@@ -84,6 +84,7 @@ Model | valMin | valMax
 This library has been designed so that it is easy to add sensor models. Contributions are therefore welcome. Adding models to the library can be done by either submitting a pull request or providing me the proposed fit function and associated calibration data by email so I can add it myself. Thank you for contributing!
 
 ## Version history
+* 1.4.2 (2018-09-23): Improved comments in SharpDistSensorArray example.
 * 1.4.1 (2018-08-07): Updated MedianFilter to latest version from [daPhoosa/MedianFilter](https://github.com/daPhoosa/MedianFilter).
 * 1.4.0 (2018-05-21): Added GP2Y0A51SK0F_5V_DS model.
 * 1.3.0 (2018-05-20): Added SharpDistSensorArray example.
