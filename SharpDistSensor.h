@@ -73,6 +73,8 @@ public:
     GP2Y0A710K0F_5V_DS,
     // Constant for GP2Y0A51SK0F 5V model
     GP2Y0A51SK0F_5V_DS,
+    // Constant for GP2Y0A41SK0F 5V model
+    GP2Y0A41SK0F_5V_DS
   };
 
   /** Constructor
