@@ -59,7 +59,7 @@ Sets the range of analog values for which the polynomial or power fit is valid (
 
 ## Pre-defined sensor models
 * `GP2Y0A60SZLF_5V`: GP2Y0A60SZLF Analog Distance Sensor 10-150cm, 5V, polynomial fit.
-* `GP2Y0A41SK0F_5V_DS`: GP2Y0A41SK0F Analog Distance Sensor 3-40cm, 5V (data sheet), polynomial fit.
+* `GP2Y0A41SK0F_5V_DS`: GP2Y0A41SK0F Analog Distance Sensor 4-30cm, 5V (data sheet), polynomial fit.
 * `GP2Y0A51SK0F_5V_DS`: GP2Y0A51SK0F Analog Distance Sensor 2-15cm, 5V (data sheet), power fit.
 * `GP2Y0A710K0F_5V_DS`: GP2Y0A710K0F Analog Distance Sensor 100-500cm, 5V (data sheet), polynomial fit.
 
