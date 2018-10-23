@@ -101,7 +101,7 @@ void SharpDistSensor::setModel(const models model)
     }
     case GP2Y0A41SK0F_5V_DS:
     {
-      // Set coefficients and range for Sharp GP2Y0A41SK0F_5V_DS
+      // Set coefficients and range for Sharp GP2Y0A41SK0F 5V
       float coeffs[] = {761.913, -8.13336, 4.18857E-02, -1.11338E-04, 1.46237E-07, -7.49656E-11};
       setPolyFitCoeffs(6, coeffs, 61, 614);
       break;
