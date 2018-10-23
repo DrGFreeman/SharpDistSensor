@@ -1,7 +1,7 @@
 # SharpDistSensor
 A library for the Arduino IDE that helps interface with Sharp analog distance sensors.  
 
-Version 1.4.2  
+Version 1.4.3  
 [![Build Status](https://travis-ci.org/DrGFreeman/SharpDistSensor.svg?branch=master)](https://travis-ci.org/DrGFreeman/SharpDistSensor)  
 By Julien de la Bruère-Terreault (drgfreeman@tuta.io)
 
