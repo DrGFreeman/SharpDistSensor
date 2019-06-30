@@ -12,6 +12,7 @@ env:
 - BOARD=leonardo
 - BOARD=micro
 - BOARD=megaatmega2560
+- BOARD=nano
 - BOARD=due
 - BOARD=yun
 - BOARD=genuino101
