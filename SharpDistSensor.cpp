@@ -114,7 +114,7 @@ void SharpDistSensor::setModel(const models model)
     }
     case GP2Y0A21F_5V_DS:
     {
-      setPowerFitCoeffs(11944.04288048986, -1.137769099177962, 0, 1023);
+      setPowerFitCoeffs(116483.399834958, -1.132373887917551, 0, 1023);
       break;
     }
   }
