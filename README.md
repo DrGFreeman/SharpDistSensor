@@ -1,5 +1,5 @@
 # SharpDistSensor
-A library for the Arduino IDE that helps interface with Sharp analog distance sensors.  
+A library for the Arduino IDE that helps interface with Sharp analog distance sensors.
 
 Version 1.5.0  
 [![Build Status](https://travis-ci.org/DrGFreeman/SharpDistSensor.svg?branch=master)](https://travis-ci.org/DrGFreeman/SharpDistSensor)  
@@ -9,7 +9,7 @@ By Julien de la Bruère-Terreault (drgfreeman@tuta.io)
 The analog value from the sensor is converted to distance using either a
 polynomial fit function up to fifth order or a power fit function.
 
-By default, this library is set to use polynomial coefficients calibrated for the Sharp GP2Y0A60SZLF Analog Distance Sensor 10-150cm 5V, over a range of 50-1500 mm (analog values 30-875). The returned distance is in millimeters (mm) units.  
+By default, this library is set to use polynomial coefficients calibrated for the Sharp GP2Y0A60SZLF Analog Distance Sensor 10-150cm 5V, over a range of 50-1500 mm (analog values 30-875). The returned distance is in millimeters (mm) units.
 
 The library also allows the use of pre-defined calibrations for different sensor models as well as custom defined polynomial or power fit functions. Examples are provided showing how to use pre-defined calibrations or how to define custom fit functions.
 
@@ -36,23 +36,23 @@ This example shows how to use the library with an array of multiple sensors.
 
 ## Library Reference
 * `SharpDistSensor(const byte pin, const byte size = 1)`  
-Constructor: `pin` is the analog pin to which the sensor is connected, `size` is the size of the median filter window and should be an odd positive integer (default = 1 = no filtering).  
+Constructor: `pin` is the analog pin to which the sensor is connected, `size` is the size of the median filter window and should be an odd positive integer (default = 1 = no filtering).
 
 * `uint16_t getDist()`  
-Returns the measured distance. Distance units are in millimeters (mm) if using the library default settings or pre-defined sensor models. If using custom calibration, units depend on the calibration used.  
+Returns the measured distance. Distance units are in millimeters (mm) if using the library default settings or pre-defined sensor models. If using custom calibration, units depend on the calibration used.
 
-* `void setModel(const byte model)`
+* `void setModel(const byte model)`  
 Sets the calibration based on pre-defined sensor model fit functions. Note that the model argument must be preceded by the SharpDistSensor namespace, i.e.: `setModel(SharpDistSensor::Model_Name)`
 
-* `void setPolyFitCoeffs(const byte nbCoeffs, const float* coeffs, const uint16_t valMin, const uint16_t valMax)`  
+* `void setPolyFitCoeffs(const byte nbCoeffs, const float* coeffs, const uint16_t valMin, const uint16_t valMax)`
 Sets the polynomial fit function coefficients _C0_ to _C5_ in the relation:  
 _Distance = C0 + C1 * A + C2 * A^2 + ... + C5 * A^5_  
-where _A_ is the analog value read from the sensor. At least one coefficient must be provided and up to six maximum (5th order polynomial). `nbCoeffs` is the number of coefficients passed and `coeffs` a vector containing the coefficients (C0 to C5). `valMin` and `valMax` define the range of analog values for which the polynomial fit is valid. Analog values outside this range will be set to the respective min or max values.  
+where _A_ is the analog value read from the sensor. At least one coefficient must be provided and up to six maximum (5th order polynomial). `nbCoeffs` is the number of coefficients passed and `coeffs` a vector containing the coefficients (C0 to C5). `valMin` and `valMax` define the range of analog values for which the polynomial fit is valid. Analog values outside this range will be set to the respective min or max values.
 
 * `void setPowerFitCoeffs(const float C, const float P, const uint16_t valMin, const uint16_t valMax)`  
 Sets the power fit function coefficients _C_ and _P_ in the relation:  
 _Distance = C * A^P_  
-where _A_ is the analog value read from the sensor. `valMin` and `valMax` define the range of analog values for which the power fit is valid. Analog values outside this range will be set to the respective min or max values.  
+where _A_ is the analog value read from the sensor. `valMin` and `valMax` define the range of analog values for which the power fit is valid. Analog values outside this range will be set to the respective min or max values.
 
 * `void setValMinMax(const uint16_t valMin, const uint16_t valMax)`  
 Sets the range of analog values for which the polynomial or power fit is valid (`valMin` and `valMax`). Analog values outside this range will be set to the respective min or max values.
@@ -62,7 +62,7 @@ Sets the range of analog values for which the polynomial or power fit is valid (
 * `GP2Y0A41SK0F_5V_DS`: GP2Y0A41SK0F Analog Distance Sensor 4-30cm, 5V (data sheet), polynomial fit.
 * `GP2Y0A51SK0F_5V_DS`: GP2Y0A51SK0F Analog Distance Sensor 2-15cm, 5V (data sheet), power fit.
 * `GP2Y0A710K0F_5V_DS`: GP2Y0A710K0F Analog Distance Sensor 100-500cm, 5V (data sheet), polynomial fit.
-
+* `GP2Y0A21F_5V_DS`:  GP2Y0A21F Analog Distance Sensor 10-80cm, 5V (data sheet), power fit
 #### Polynomial / Power fit coefficients:
 
 Model | Units | C0/C | C1/P | C2 | C3 | C4 | C5
@@ -71,6 +71,7 @@ Model | Units | C0/C | C1/P | C2 | C3 | C4 | C5
 **GP2Y0A41SK0F_5V_DS** | mm | 761.9 | -8.13336 | 4.18857E-2 | -1.11338E-4 | 1.46237E-7 | -7.49656E-11
 **GP2Y0A51SK0F_5V_DS** | mm | 4.03576E+4 | -1.26093 | | | |
 **GP2Y0A710K0F_5V_DS** | mm | 178506 | -1607.72 | 5.5239 | -8.47601E-3 | 4.87819E-6 |
+**GP2Y0A21F_5V_DS** | mm | 116483.399834958 | -1.132373887917551 | | | |
 
 #### Analog values range:
 
@@ -80,6 +81,7 @@ Model | valMin | valMax
 **GP2Y0A41SK0F_5V_DS** | 61 | 614
 **GP2Y0A51SK0F_5V_DS** | 70 | 500
 **GP2Y0A710K0F_5V_DS** | 284 | 507
+**GP2Y0A21F_5V_DS**    | 0   | 1023
 
 **Important Note:** The analog voltage returned by the sensor is largely dependent of the reflected object size and reflectivity. The distance returned by these pre-defined calibration functions can therefore vary significantly from the real distance depending on the object detected. Where accuracy is required by the application, it is recommended to perform calibration with the object to be detected and use custom calibration fit functions instead.
 
