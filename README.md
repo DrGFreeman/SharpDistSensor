@@ -1,9 +1,9 @@
 # SharpDistSensor
 A library for the Arduino IDE that helps interface with Sharp analog distance sensors.
 
-Version 1.5.0  
+Version 1.6.0  
 [![Build Status](https://travis-ci.org/DrGFreeman/SharpDistSensor.svg?branch=master)](https://travis-ci.org/DrGFreeman/SharpDistSensor)  
-By Julien de la Bruère-Terreault (drgfreeman@tuta.io)
+By Julien de la Bruère-Terreault (drgfreeman@tuta.io) and [contributors](#contributors)
 
 ## Summary
 The analog value from the sensor is converted to distance using either a
@@ -87,7 +87,14 @@ Model | valMin | valMax
 
 This library has been designed so that it is easy to add sensor models. Contributions are therefore welcome. Adding models to the library can be done by either submitting a pull request or providing me the proposed fit function and associated calibration data by email so I can add it myself. Thank you for contributing!
 
+## Contributors
+
+Thanks to all who have directly or indirectly contributed to this library:
+- Phillip Schmidt [@daPhoosa](https://github.com/daPhoosa) - MedianFilter library used in this library
+- Christian Gosch [@cgo](https://github.com/cgo) - [#17](https://github.com/DrGFreeman/SharpDistSensor/pull/17)
+
 ## Version history
+* 1.6.0 (2020-10-10): Added GP2Y0A21F_5V_DS model, added Atmega 328 Nano board to CI testing.
 * 1.5.0 (2018-10-22): Added GP2Y0A41SK0F_5V_DS model.
 * 1.4.2 (2018-09-23): Improved comments in SharpDistSensorArray example.
 * 1.4.1 (2018-08-07): Updated MedianFilter to latest version from [daPhoosa/MedianFilter](https://github.com/daPhoosa/MedianFilter).
