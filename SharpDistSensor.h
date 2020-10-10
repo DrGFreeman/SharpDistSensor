@@ -4,7 +4,7 @@ Source: https://github.com/DrGFreeman/SharpDistSensor
 
 MIT License
 
-Copyright (c) 2018 Julien de la Bruere-Terreault <drgfreeman@tuta.io>
+Copyright (c) 2020 Julien de la Bruere-Terreault <drgfreeman@tuta.io> and contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
