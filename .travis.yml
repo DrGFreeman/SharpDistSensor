@@ -1,4 +1,6 @@
 language: python
+python:
+  - "2.7"
 
 cache:
   directories:
@@ -12,6 +14,7 @@ env:
 - BOARD=leonardo
 - BOARD=micro
 - BOARD=megaatmega2560
+- BOARD=nanoatmega328new
 - BOARD=due
 - BOARD=yun
 - BOARD=genuino101
